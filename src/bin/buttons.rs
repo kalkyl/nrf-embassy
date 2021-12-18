@@ -27,7 +27,7 @@ async fn button_task(id: Button, mut pin: Input<'static, AnyPin>) {
 
 #[embassy::main]
 async fn main(spawner: Spawner, p: Peripherals) {
-    info!("Hello world");
+    info!("Press a button");
     let btn1 = Input::new(p.P1_13.degrade(), Pull::Up);
     let btn2 = Input::new(p.P1_15.degrade(), Pull::Up);
     let btn3 = Input::new(p.P1_09.degrade(), Pull::Up);
