@@ -2,13 +2,14 @@
 #![no_main]
 #![feature(type_alias_impl_trait)]
 
+use nrf_embassy as _; // global logger + panicking-behavior + memory layout
+
 use defmt::*;
 use embassy::executor::Spawner;
 use embassy::time::{Duration, Timer};
 use embassy_nrf::gpio::{Level, Output, OutputDrive};
 use embassy_nrf::Peripherals;
 use embedded_hal::digital::v2::OutputPin;
-use nrf_embassy as _; // global logger + panicking-behavior + memory layout
 
 #[embassy::main]
 async fn main(_spawner: Spawner, p: Peripherals) {

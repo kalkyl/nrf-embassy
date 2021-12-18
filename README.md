@@ -6,4 +6,4 @@
 
 ## Run example
 
-`DEFMT_LOG=info cargo rb blink`
+`$ DEFMT_LOG=info cargo rb blink`
