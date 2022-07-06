@@ -7,17 +7,15 @@ use nrf_embassy as _; // global logger + panicking-behavior + memory layout
 use defmt::{info, unwrap, Format};
 use embassy::executor::Spawner;
 use embassy::time::{Duration, Timer};
-use embassy::traits::gpio::{WaitForHigh, WaitForLow};
 use embassy_nrf::gpio::{AnyPin, Input, Pin as _, Pull};
 use embassy_nrf::Peripherals;
-use embedded_hal::digital::v2::InputPin;
 
 #[embassy::task(pool_size = 9)]
 async fn button_task(id: Button, mut pin: Input<'static, AnyPin>) {
     loop {
         pin.wait_for_low().await;
         Timer::after(Duration::from_millis(25)).await; // Debounce
-        if unwrap!(pin.is_low()) {
+        if pin.is_low() {
             info!("Button {} was pressed", id);
             pin.wait_for_high().await;
             info!("Button {} was released", id);
